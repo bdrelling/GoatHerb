@@ -11,10 +11,13 @@
 
 ## Features
 
-### General
+### Cross-Platform Support
 
-- [x] Apple platform compatibility (iOS, macOS, tvOS, watchOS)
-- [x] Linux & Server-side Swift platform compatibility
+- [x] iOS
+- [x] macOS
+- [x] tvOS
+- [x] watchOS
+- [x] Linux _(optimized for Server-side Swift)_
 
 > Most cross-platform SDKs simply replace Foundation's `URLSession` with SwiftNIO's `AsyncHTTPClient` and call it a day. Not GoatHerb! GoatHerb is built on top of [KippleNetworking](https://github.com/swift-kipple/Networking), which intelligently chooses between Foundation's `URLSession` or SwiftNIO's `AsyncHTTPClient` depending on the platform, ensuring optimal networking for the platform it's running on.
 
@@ -30,11 +33,15 @@
 
 ## Out of Scope
 
+GoatHerb wasn't designed to wrap the entire GitHub API. Instead, GoatHerb specializes in publicly available information that you can get _without_ API authentication.
+
+As such, the following features are out of scope:
+
 - Authentication
 - Private Repositories
 - GitHub Enterprise
 
-> GoatHerb wasn't designed to wrap the entire GitHub API as GitHub's API is _massive_. Instead, GoatHerb optimizes for publicly available information that you can get without API authentication. Besides, there are [numerous Swift GitHub SDKs already available](https://swiftpackageindex.com/search?query=GitHub) to take your pick from.
+> Disappointed? No worries! There are [numerous Swift GitHub SDKs available](https://swiftpackageindex.com/search?query=GitHub) to take your pick from.
 
 ## Contributing
 
@@ -44,7 +51,7 @@ If opening a pull request, please ensure that the package retains 100% code cove
 
 ## Credits
 
-Special thanks to @boiarqin for the unforgettable repository name.
+Special thanks to [@boiarqin](https://github.com/boiarqin) for providing me with an unforgettable repository name.
 
 ## License
 
