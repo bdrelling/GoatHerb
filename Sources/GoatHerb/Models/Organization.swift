@@ -8,7 +8,7 @@ public struct Organization {
     public let avatarURL: String
     public let company: String?
     public let createDate: Date
-    public let description: String
+    public let description: String?
     public let email: String?
     public let eventsURL: String
     public let hasOrganizationProjects: Bool
@@ -20,7 +20,7 @@ public struct Organization {
     public let isVerified: Bool
     public let location: String?
     public let membersURL: String
-    public let name: String?
+    public let name: String
     public let nodeID: String
     public let numberOfFollowers: Int
     public let numberOfPublicGists: Int
@@ -30,9 +30,9 @@ public struct Organization {
     public let repositoriesURL: String
     public let slug: String
     public let twitterUsername: String?
-    public let type: String
+    public let type: OwnerType
     public let updateDate: Date
-    public let websiteURL: String?
+    public let websiteURL: String
 }
 
 // MARK: - Extensions

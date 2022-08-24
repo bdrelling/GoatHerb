@@ -7,6 +7,5 @@ import XCTest
 class BaseTestCase: XCTestCase {
     let dispatcher: NetworkRequestDispatching = .universal
 
-    private(set) lazy var environment: Environment = GitHub.environment()
-    private(set) lazy var client: HTTPClient = .init(environment: self.environment, dispatcher: self.dispatcher)
+    private(set) lazy var gitHub = GitHub(dispatcher: self.dispatcher)
 }

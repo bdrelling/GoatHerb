@@ -32,7 +32,7 @@ public struct User {
     public let starredURL: String
     public let subscriptionsURL: String
     public let twitterUsername: String?
-    public let type: String
+    public let type: OwnerType
     public let updateDate: Date
     public let username: String
     public let websiteURL: String?
