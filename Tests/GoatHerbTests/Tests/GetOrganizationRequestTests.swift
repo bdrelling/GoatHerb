@@ -30,18 +30,18 @@ final class GetOrganizationRequestTests: BaseTestCase {
         XCTAssertEqual(organization.twitterUsername, "bdrelling")
         XCTAssertEqual(organization.type, .organization)
         XCTAssertEqual(organization.websiteURL, "https://briandrelling.com")
-        
+
         // We will always know our exact create date.
-        
+
         let createDate = try XCTUnwrap(Date(year: 2022, month: 7, day: 9, hour: 2, minute: 23, second: 32, timeZone: "GMT"))
         XCTAssertEqual(organization.createDate, createDate)
-        
+
         // These properties are too variable, but we can at least evaluate the type.
         XCTAssertGreaterThanOrEqual(organization.numberOfFollowers, 0)
         XCTAssertGreaterThanOrEqual(organization.numberOfPublicGists, 0)
         XCTAssertGreaterThanOrEqual(organization.numberOfPublicRepositories, 0)
         XCTAssertGreaterThanOrEqual(organization.numberOfUsersFollowed, 0)
-        
+
         // Our update date will also change too often, so instead just compare it with a
         // minimum date to ensure no error has occurred in parsing or fething.
         let minimumUpdateDate = try XCTUnwrap(Date(year: 2022, month: 8, day: 1, timeZone: "GMT"))

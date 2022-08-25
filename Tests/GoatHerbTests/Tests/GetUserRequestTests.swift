@@ -34,17 +34,17 @@ final class GetUserRequestTests: BaseTestCase {
         XCTAssertEqual(user.type, .user)
         XCTAssertEqual(user.username, "bdrelling")
         XCTAssertEqual(user.websiteURL, "https://briandrelling.com")
-        
+
         // We will always know our exact create date.
         let createDate = try XCTUnwrap(Date(year: 2012, month: 12, day: 12, hour: 6, minute: 22, second: 27, timeZone: "GMT"))
         XCTAssertEqual(user.createDate, createDate)
-        
+
         // These properties are too variable, but we can at least evaluate the type.
         XCTAssertGreaterThan(user.numberOfFollowers, 0)
         XCTAssertGreaterThan(user.numberOfPublicGists, 0)
         XCTAssertGreaterThan(user.numberOfPublicRepositories, 0)
         XCTAssertGreaterThan(user.numberOfUsersFollowed, 0)
-        
+
         // Our update date will also change too often, so instead just compare it with a
         // minimum date to ensure no error has occurred in parsing or fething.
         let minimumUpdateDate = try XCTUnwrap(Date(year: 2022, month: 8, day: 1, timeZone: "GMT"))

@@ -1,3 +1,5 @@
+// Copyright © 2022 Brian Drelling. All rights reserved.
+
 import GoatHerb
 import XCTest
 
@@ -9,23 +11,23 @@ extension RepositoryValidating {
     func validate(_ repositories: [Repository], shouldHavePermissions: Bool = true) throws {
         // Ensure at least one repository is returned.
         XCTAssertGreaterThan(repositories.count, 0)
-        
+
         // Validate each repository with a standard set of checks.
         try repositories.forEach { try self.validate($0, shouldHavePermissions: shouldHavePermissions) }
     }
-    
+
     func validate(_ repository: Repository, shouldHavePermissions: Bool = true) throws {
         // Ensure that the ID, which is a positive integer, is deserialized properly.
         XCTAssertGreaterThan(repository.id, 0)
-        
+
         // The name should match the second half of the full name.
         let name = try XCTUnwrap(repository.fullName.split(separator: "/").last)
         XCTAssertEqual(repository.name, String(name))
-        
+
         // We only only deal in public repositories, for now. If that ever changes, we can update this test.
         XCTAssertEqual(repository.visibility, "public")
         XCTAssertEqual(repository.isPrivate, false)
-        
+
         // All URLs should follow the same basic template.
         XCTAssertEqual(repository.apiURL, "https://api.github.com/repos/\(repository.fullName)")
         XCTAssertEqual(repository.archiveURL, "https://api.github.com/repos/\(repository.fullName)/{archive_format}{/ref}")
@@ -69,7 +71,7 @@ extension RepositoryValidating {
         XCTAssertEqual(repository.tagsURL, "https://api.github.com/repos/\(repository.fullName)/tags")
         XCTAssertEqual(repository.teamsURL, "https://api.github.com/repos/\(repository.fullName)/teams")
         XCTAssertEqual(repository.treesURL, "https://api.github.com/repos/\(repository.fullName)/git/trees{/sha}")
-        
+
         // All of these values should be 0 or greater,
         // but they change too often to evaluate across all repositories.
         XCTAssertGreaterThanOrEqual(repository.numberOfForks, 0)
@@ -77,17 +79,17 @@ extension RepositoryValidating {
         XCTAssertGreaterThanOrEqual(repository.numberOfStargazers, 0)
         XCTAssertGreaterThanOrEqual(repository.numberOfWatchers, 0)
         XCTAssertGreaterThanOrEqual(repository.topics.count, 0)
-        
+
         // Size should always be greater than 0
         XCTAssertGreaterThan(repository.size, 0)
-        
+
         // Our dates will also change too often, so instead just compare it with a
         // minimum date to ensure no error has occurred in parsing or fething.
         let minimumDate = try XCTUnwrap(Date(year: 2010, month: 1, day: 1, timeZone: "GMT"))
         XCTAssertGreaterThan(repository.createDate, minimumDate)
         XCTAssertGreaterThan(repository.updateDate, minimumDate)
         XCTAssertGreaterThan(repository.pushDate, minimumDate)
-        
+
         // Certain repositories should not have a license.
         // .github = GitHub meta repository
         // manager_readme = README repository
@@ -95,11 +97,11 @@ extension RepositoryValidating {
         if ![".github", "manager_readme", repository.owner.username].contains(repository.name) {
             XCTAssertNotNil(repository.license)
         }
-        
+
         // All organization repositories should have permissions.
         if shouldHavePermissions, repository.owner.type == .organization {
             let permissions = try XCTUnwrap(repository.permissions, repository.fullName)
-            
+
             // All repositories are public, so these permissions are always consistent.
             XCTAssertEqual(permissions.admin, false)
             XCTAssertEqual(permissions.maintain, false)
@@ -107,11 +109,11 @@ extension RepositoryValidating {
             XCTAssertEqual(permissions.triage, false)
             XCTAssertEqual(permissions.pull, true)
         }
-        
+
         // Validate the owner of the repository.
         try self.validate(repository.owner)
     }
-    
+
     func validate(_ owner: Repository.Owner) throws {
         // Evaluate all URLs, which should follow the same basic template.
         // Note that organization owners use the "users/<username>" path as well, for some reason.
@@ -127,7 +129,7 @@ extension RepositoryValidating {
         XCTAssertEqual(owner.repositoriesURL, "https://api.github.com/users/\(owner.username)/repos")
         XCTAssertEqual(owner.eventsURL, "https://api.github.com/users/\(owner.username)/events{/privacy}")
         XCTAssertEqual(owner.receivedEventsURL, "https://api.github.com/users/\(owner.username)/received_events")
-        
+
         // The users and organizations references in these tests are not and will never be site admins.
         XCTAssertEqual(owner.isSiteAdmin, false)
     }

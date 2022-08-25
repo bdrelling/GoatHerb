@@ -9,7 +9,7 @@ final class GetRepositoriesRequestTests: BaseTestCase, RepositoryValidating {
         let repositories = try await self.gitHub.getRepositories(user: "bdrelling")
         try self.validate(repositories)
     }
-    
+
     /// Ensures that a call to <https://api.github.com/orgs/swift-kipple/repos> succeeds.
     func testOrganizationRepositoriesRequestSucceeds() async throws {
         let repositories = try await self.gitHub.getRepositories(org: "swift-kipple")

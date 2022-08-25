@@ -7,7 +7,7 @@ import KippleNetworking
 /// For an example request, see <https://api.github.com/orgs/swift-kipple>.
 public struct GetOrganizationRequest: Request, ResponseAnticipating {
     public typealias Response = Organization
-    
+
     public let path: String
 
     public init(org organization: String) {

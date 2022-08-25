@@ -1,3 +1,5 @@
+// Copyright © 2022 Brian Drelling. All rights reserved.
+
 import Foundation
 
 extension Date {
@@ -12,14 +14,14 @@ extension Date {
             minute: minute,
             second: second
         )
-        
+
         guard let date = dateComponents.date else {
             return nil
         }
-        
+
         self = date
     }
-    
+
     // Shorthand for TimeZone that takes a String as the identifier.
     init?(year: Int, month: Int, day: Int, hour: Int? = nil, minute: Int? = nil, second: Int? = nil, timeZone: String, calendar: Calendar? = nil) {
         self.init(year: year, month: month, day: day, hour: hour, minute: minute, second: second, timeZone: .init(identifier: timeZone), calendar: calendar)

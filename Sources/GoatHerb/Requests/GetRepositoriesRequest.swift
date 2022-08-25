@@ -9,13 +9,13 @@ import KippleNetworking
 ///   - <https://api.github.com/orgs/swift-kipple/repos>
 public struct GetRepositoriesRequest: Request, ResponseAnticipating {
     public typealias Response = [Repository]
-    
+
     public let path: String
-    
+
     public init(org organization: String) {
         self.path = "/orgs/\(organization)/repos"
     }
-    
+
     public init(user username: String) {
         self.path = "/users/\(username)/repos"
     }
@@ -27,7 +27,7 @@ public extension GitHub {
     func getRepositories(org organization: String) async throws -> GetRepositoriesRequest.Response {
         try await self.request(GetRepositoriesRequest(org: organization))
     }
-    
+
     func getRepositories(user username: String) async throws -> GetRepositoriesRequest.Response {
         try await self.request(GetRepositoriesRequest(user: username))
     }

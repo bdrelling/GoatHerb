@@ -9,9 +9,9 @@ import KippleNetworking
 ///   - <https://api.github.com/repos/swift-kipple/Networking>
 public struct GetRepositoryRequest: Request, ResponseAnticipating {
     public typealias Response = Repository
-    
+
     public let path: String
-    
+
     public init(name: String) {
         self.path = "/repos/\(name)"
     }

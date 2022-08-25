@@ -1,9 +1,4 @@
-//
-//  File.swift
-//  
-//
-//  Created by Brian Drelling on 8/24/22.
-//
+// Copyright © 2022 Brian Drelling. All rights reserved.
 
 import Foundation
 
@@ -88,7 +83,7 @@ public struct Repository {
     public let updateDate: Date
     public let visibility: String
     public let websiteURL: String?
-    
+
     /// A set of permissions related to this repository.
     /// Permissions are only applicable for `Organization` repositories.
     public let permissions: Permissions?
