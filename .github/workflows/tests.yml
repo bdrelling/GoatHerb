@@ -10,5 +10,6 @@ on:
 jobs:
   swift_test:
     uses: bdrelling/ci/.github/workflows/swift_test_universal_package_5_5.yml@main
+    secrets: inherit
     with:
       scheme: GoatHerb
