@@ -10,7 +10,7 @@ final class GetRepositoryRequestTests: BaseTestCase, RepositoryValidating {
 
         // Validate the repository's specific properties.
         XCTAssertEqual(repository.allowsForking, true)
-        XCTAssertEqual(repository.description, "Cross-platform Swift library for accessing the GitHub API.")
+        XCTAssertEqual(repository.description, "Cross-platform Swift library for accessing the public GitHub API.")
         XCTAssertEqual(repository.fullName, "bdrelling/GoatHerb")
         XCTAssertEqual(repository.hasDownloads, true)
         XCTAssertEqual(repository.hasIssues, true)
@@ -26,7 +26,7 @@ final class GetRepositoryRequestTests: BaseTestCase, RepositoryValidating {
         XCTAssertEqual(repository.language, "Swift")
         XCTAssertEqual(repository.mirrorURL, nil)
         XCTAssertEqual(repository.nodeID, "R_kgDOH3wrlw")
-        XCTAssertEqual(repository.websiteURL, "")
+        XCTAssertEqual(repository.websiteURL, "https://briandrelling.com")
 
         // We will always know our exact create date.
         let createDate = try XCTUnwrap(Date(year: 2022, month: 8, day: 24, hour: 2, minute: 8, second: 4, timeZone: "GMT"))
