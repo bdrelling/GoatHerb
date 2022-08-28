@@ -11,5 +11,5 @@ jobs:
     secrets: inherit
     with:
       scheme: GoatHerb
-      platforms: macOS Linux
+      platforms: iOS tvOS macOS watchOS Linux
       swift-versions: 5.5 5.6
