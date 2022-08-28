@@ -11,5 +11,7 @@ jobs:
     secrets: inherit
     with:
       scheme: GoatHerb
-      platforms: iOS tvOS macOS watchOS Linux
+      # GitHub's API is rate limited and this SDK doesn't use authentication.
+      # As such, we'll only test our core platforms (macOS and Linux, for Server-side Swift support).
+      platforms: macOS Linux
       swift-versions: 5.5 5.6
