@@ -1,7 +1,9 @@
 // Copyright © 2022 Brian Drelling. All rights reserved.
 
 import Foundation
+import KippleDiagnostics
 import KippleNetworking
+import Logging
 
 public final class GitHub {
     // MARK: Constants
@@ -17,8 +19,11 @@ public final class GitHub {
 
     // MARK: Initializers
 
-    public init(dispatcher: NetworkRequestDispatching = .universal) {
-        self.client = .init(environment: Self.environment(), dispatcher: dispatcher)
+    public init(personalAccessToken: String? = nil, dispatcher: NetworkRequestDispatching = .universal, logger: Logger? = nil) {
+        // If the personal access token was passed in explicitly, use that. Otherwise, check the environment for the applicable key.
+        let personalAccessToken = personalAccessToken ?? ProcessInfo.processInfo.environment["GITHUB_ACCESS_TOKEN"]
+
+        self.client = .init(environment: Self.environment(personalAccessToken: personalAccessToken), dispatcher: dispatcher, logger: logger)
     }
 
     // MARK: Requests
@@ -29,9 +34,16 @@ public final class GitHub {
 
     // MARK: Utilities
 
-    public static func environment() -> Environment {
-        .init(
-            baseURL: Self.baseURL
+    public static func environment(personalAccessToken: String? = nil) -> Environment {
+        var headers: [HTTPHeader: String] = [:]
+
+        if let personalAccessToken = personalAccessToken {
+            headers[.authorization] = "Bearer \(personalAccessToken)"
+        }
+
+        return .init(
+            baseURL: Self.baseURL,
+            headers: headers
         )
     }
 }

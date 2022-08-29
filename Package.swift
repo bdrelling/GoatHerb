@@ -14,13 +14,15 @@ let package = Package(
         .library(name: "GoatHerb", targets: ["GoatHerb"])
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-kipple/Networking", .upToNextMinor(from: "0.0.10")),
+        .package(url: "https://github.com/swift-kipple/Diagnostics", .upToNextMinor(from: "0.2.0")),
+        .package(url: "https://github.com/swift-kipple/Networking", .upToNextMinor(from: "0.3.0")),
     ],
     targets: [
         // Product Targets
         .target(
             name: "GoatHerb",
             dependencies: [
+                .product(name: "KippleDiagnostics", package: "Diagnostics"),
                 .product(name: "KippleNetworking", package: "Networking"),
             ]
         ),
