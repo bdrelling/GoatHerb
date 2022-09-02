@@ -9,7 +9,7 @@ jobs:
   # Prepare our workflow.
   prepare:
     name: Prepare
-    uses: ./.github/workflows/prepare.yml
+    uses: bdrelling/ci/.github/workflows/prepare.yml@main
 
   # Run our test script.
   swift_test:
@@ -61,6 +61,6 @@ jobs:
   # Send notification to Discord on failure.
   send_notification:
     name: Send Notification
-    uses: ./.github/workflows/send_notification.yml
+    uses: bdrelling/ci/.github/workflows/send_notification.yml@main
     needs: [swift_test]
     secrets: inherit
