@@ -5,25 +5,62 @@ on:
   push:
     branches: [main]
 
-env:
-  GITHUB_ACCESS_TOKEN: ${{ github.token }}
-
 jobs:
-  check_token:
-    runs-on: ubuntu-latest
-    steps:
-      - run: printenv
-      - run: echo ${{ github.token }}
-      - run: echo $GITHUB_ACCESS_TOKEN
-      - run: echo $GITHUB_TOKEN
+  # Prepare our workflow.
+  prepare:
+    name: Prepare
+    uses: ./.github/workflows/prepare.yml
 
+  # Run our test script.
   swift_test:
-    uses: bdrelling/ci/.github/workflows/swift_test.yml@main
-    needs: [check_token]
+    name: ${{ matrix.inputs.build-method }} test (${{ matrix.inputs.platform }}, swift ${{ matrix.inputs.swift-version }})
+    runs-on: ${{ matrix.inputs.runner }}
+    needs: [create-swift-test-matrix]
+    strategy:
+      fail-fast: false
+      matrix:
+        inputs:
+          - {
+              runner: 'macos-12',
+              platform: 'macOS',
+              build-method: 'swift',
+              swift-version: '5.5',
+            }
+          - {
+              runner: 'macos-12',
+              platform: 'macOS',
+              build-method: 'swift',
+              swift-version: '5.6',
+            }
+          - {
+              runner: 'ubuntu-latest',
+              platform: 'Linux',
+              build-method: 'swift',
+              swift-version: '5.5',
+            }
+          - {
+              runner: 'ubuntu-latest',
+              platform: 'Linux',
+              build-method: 'swift',
+              swift-version: '5.6',
+            }
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run Tests
+        # As of September 2022, we cannot reference local actions from a reusable workflow.
+        uses: bdrelling/ci/.github/actions/swift-test@main
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ github.token }}
+        with:
+          scheme: ${{ inputs.scheme }}
+          platform: ${{ matrix.inputs.platform }}
+          build-method: ${{ matrix.inputs.build-method }}
+          swift-version: ${{ matrix.inputs.swift-version }}
+
+  # Send notification to Discord on failure.
+  send_notification:
+    name: Send Notification
+    uses: ./.github/workflows/send_notification.yml
+    needs: [swift_test]
     secrets: inherit
-    with:
-      scheme: GoatHerb
-      # GitHub's API is rate limited and this SDK doesn't use authentication.
-      # As such, we'll only test our core platforms (macOS and Linux, for Server-side Swift support).
-      platforms: macOS Linux
-      swift-versions: 5.5 5.6
