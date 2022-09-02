@@ -9,7 +9,7 @@ import XCTest
 class BaseTestCase: XCTestCase {
     let dispatcher: NetworkRequestDispatching = .universal
 
-    private let logger: Logger? = {
+    let logger: Logger? = {
         if ProcessInfo.processInfo.environment["CI"] == nil {
             return .debug("GoatHerbTests")
         } else {
@@ -17,6 +17,9 @@ class BaseTestCase: XCTestCase {
         }
     }()
 
+    /// A GitHub client that detects an access token from the environment.
     private(set) lazy var gitHub = GitHub(dispatcher: self.dispatcher, logger: self.logger)
+
+    /// A GitHub client that _never_ detects an access token from the environment.
     private(set) lazy var gitHubUnauthenticated = GitHub(dispatcher: self.dispatcher, logger: self.logger, shouldUseEnvironment: false)
 }

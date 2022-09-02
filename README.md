@@ -11,18 +11,22 @@
 
 ## Features
 
-### Cross-Platform Support
+### General
 
-- [x] iOS
-- [x] macOS
-- [x] tvOS
-- [x] watchOS
-- [x] Linux _(optimized for Server-side Swift)_
+- [x] Compatible with [swift-log](https://github.com/apple/swift-log).
+- [x] Full concurrency (async/await) support.
+- [x] Cross-platform support:
+  - [x] iOS
+  - [x] macOS
+  - [x] tvOS
+  - [x] watchOS
+  - [x] Linux _(optimized for Server-side Swift)_
 
 > Most cross-platform SDKs simply replace Foundation's `URLSession` with SwiftNIO's `AsyncHTTPClient` and call it a day. Not GoatHerb! GoatHerb is built on top of [KippleNetworking](https://github.com/swift-kipple/Networking), which intelligently chooses between Foundation's `URLSession` or SwiftNIO's `AsyncHTTPClient` depending on the platform, ensuring optimal networking for the platform it's running on.
 
 ### GitHub API
 
+- [x] Get Rate Limit
 - [x] Get User
 - [x] Get Organization
 - [x] Get User Repositories
@@ -30,6 +34,36 @@
 - [x] Get Repository
 
 > That's it for now! If you're looking for a more feature-complete SDK, check out [the list of GitHub SDKs on Swift Package Index](https://swiftpackageindex.com/search?query=GitHub).
+
+## Usage
+
+Create a `GitHub` object. 
+
+```swift
+let gitHub = GitHub()
+```
+
+You can optionally provide an `accessToken` in the initializer, or via setting the `GITHUB_ACCESS_TOKEN` or `GITHUB_TOKEN` environment variable.
+
+```swift
+let gitHub = GitHub(accessToken: "<token>")
+```
+
+From there, requests are extremely straight-forward. Here are some examples:
+
+```swift
+// Get a user.
+let user = try await self.gitHub.getUser("bdrelling")
+
+// Get an organization.
+let organization = try await self.gitHub.getOrganization("swift-kipple")
+
+// Get all repositories for a user.
+let repositories = try await self.gitHub.getRepositories(user: "bdrelling")
+
+// Get all repositories for an organization.
+let repositories = try await self.gitHub.getRepositories(org: "swift-kipple")
+```
 
 ## Contributing
 
