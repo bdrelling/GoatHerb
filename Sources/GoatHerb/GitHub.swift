@@ -24,7 +24,7 @@ public final class GitHub {
         // If the access token was passed in explicitly, use that.
         // Otherwise, unless environment detection was disabled, check the environment for the applicable key.
         let accessToken = accessToken ?? (shouldUseEnvironment ? ProcessInfo.processInfo.environment["GITHUB_ACCESS_TOKEN"] : nil)
-        
+
         // Whether or not the GitHub client is using an access token when making requests.
         self.hasAccessToken = accessToken?.isEmpty == false
 
