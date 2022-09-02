@@ -23,7 +23,7 @@ public final class GitHub {
     public init(accessToken: String? = nil, dispatcher: NetworkRequestDispatching = .universal, logger: Logger? = nil, shouldUseEnvironment: Bool = true) {
         // If the access token was passed in explicitly, use that.
         // Otherwise, unless environment detection was disabled, check the environment for the applicable key.
-        let accessToken = accessToken ?? (shouldUseEnvironment ? ProcessInfo.processInfo.environment["GITHUB_ACCESS_TOKEN"] : nil)
+        let accessToken = accessToken ?? (shouldUseEnvironment ? Self.accessTokenFromEnvironment() : nil)
 
         // Whether or not the GitHub client is using an access token when making requests.
         self.hasAccessToken = accessToken?.isEmpty == false
@@ -50,5 +50,16 @@ public final class GitHub {
             baseURL: Self.baseURL,
             headers: headers
         )
+    }
+
+    /// Convenience method for checking various environment keys, all of which are fairly common across CI environments.
+    private static func accessTokenFromEnvironment() -> String? {
+        if let token = ProcessInfo.processInfo.environment["GITHUB_ACCESS_TOKEN"] {
+            return token
+        } else if let token = ProcessInfo.processInfo.environment["GITHUB_TOKEN"] {
+            return token
+        } else {
+            return nil
+        }
     }
 }

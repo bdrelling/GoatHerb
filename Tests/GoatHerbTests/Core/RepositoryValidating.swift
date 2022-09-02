@@ -92,7 +92,7 @@ extension RepositoryValidating {
 
         // All organization repositories should have permissions.
         if shouldHavePermissions, repository.owner.type == .organization {
-            let permissions = try XCTUnwrap(repository.permissions, repository.fullName)
+            XCTAssertNotNil(repository.permissions, repository.fullName)
         }
 
         // Validate the owner of the repository.
