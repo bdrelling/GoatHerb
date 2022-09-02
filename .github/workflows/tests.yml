@@ -15,7 +15,7 @@ jobs:
   swift_test:
     name: ${{ matrix.inputs.build-method }} test (${{ matrix.inputs.platform }}, swift ${{ matrix.inputs.swift-version }})
     runs-on: ${{ matrix.inputs.runner }}
-    needs: [create-swift-test-matrix]
+    needs: [prepare]
     strategy:
       fail-fast: false
       matrix:
