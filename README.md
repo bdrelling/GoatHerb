@@ -1,7 +1,7 @@
 # GoatHerb
 
 [![CI Status](https://github.com/bdrelling/GoatHerb/actions/workflows/tests.yml/badge.svg)](https://github.com/bdrelling/GoatHerb/actions/workflows/tests.yml)
-![Code Coverage](https://img.shields.io/badge/coverage-100%25-success)
+![Code Coverage](https://img.shields.io/badge/coverage-98%25-success)
 [![Latest Release](https://img.shields.io/github/v/tag/bdrelling/GoatHerb?color=blue&label=latest)](https://github.com/bdrelling/GoatHerb/tags)
 [![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fbdrelling%2FGoatHerb%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/bdrelling/GoatHerb)
 [![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fbdrelling%2FGoatHerb%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/bdrelling/GoatHerb)

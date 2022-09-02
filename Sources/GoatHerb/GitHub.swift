@@ -56,12 +56,7 @@ public final class GitHub {
 
     /// Convenience method for checking various environment keys, all of which are fairly common across CI environments.
     private static func accessTokenFromEnvironment() -> String? {
-        if let token = ProcessInfo.processInfo.environment["GITHUB_ACCESS_TOKEN"] {
-            return token
-        } else if let token = ProcessInfo.processInfo.environment["GITHUB_TOKEN"] {
-            return token
-        } else {
-            return nil
-        }
+        // Check both keys. If neither exist, the function returns nil as intended.
+        ProcessInfo.processInfo.environment["GITHUB_ACCESS_TOKEN"] ?? ProcessInfo.processInfo.environment["GITHUB_TOKEN"]
     }
 }
