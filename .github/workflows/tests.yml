@@ -37,7 +37,7 @@ jobs:
       - name: Create Swift Test Matrix
         id: create_swift_test_matrix
         # As of September 2022, we cannot reference local actions from a reusable workflow.
-        uses: bdrelling/ci/.github/actions/create_swift_test_matrix@main
+        uses: bdrelling/ci/.github/actions/create-swift-test-matrix@main
         with:
           platforms: ${{ env.platforms }}
           swift-versions: ${{ env.swift-versions }}
