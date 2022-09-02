@@ -8,9 +8,9 @@ import XCTest
 
 class BaseTestCase: XCTestCase {
     let dispatcher: NetworkRequestDispatching = .universal
-    
+
     private let logger: Logger? = {
-        if ProcessInfo.processInfo.environment["CI"] != nil {
+        if ProcessInfo.processInfo.environment["CI"] == nil {
             return .debug("GoatHerbTests")
         } else {
             return nil

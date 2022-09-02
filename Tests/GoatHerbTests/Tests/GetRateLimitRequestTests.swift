@@ -15,7 +15,7 @@ final class GetRateLimitRequestTests: BaseTestCase {
         XCTAssertEqual(rateLimit.resources.count, 9)
 
         // Double-check the allowances for "core", which should be 1000+ on GitHub Actions and 5000+ for a user account.
-        XCTAssertGreaterThan(rateLimit.rate.limit, 1000)
+        XCTAssertGreaterThanOrEqual(rateLimit.rate.limit, 1000)
     }
 
     /// Ensures that an _unauthenticated_ call to <https://api.github.com/rate_limit> succeeds.
