@@ -24,11 +24,7 @@ jobs:
     name: Check Rate Limit
     runs-on: ubuntu-latest
     steps:
-      - run: >
-          curl \
-          -H 'Accept: application/vnd.github+json' \ 
-          -H 'Authorization: Bearer ${{ github.token}}' \
-          https://api.github.com/rate_limit
+      - run: "curl -H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${{ github.token }}' https://api.github.com/rate_limit"
 
   # Generate a dynamic matrix to use for testing.
   # NOTE: This job is copied WITH modifications from https://github.com/bdrelling/ci/.github/workflows/swift_test.yml
