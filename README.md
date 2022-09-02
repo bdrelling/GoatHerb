@@ -37,7 +37,7 @@
 
 ## Usage
 
-Create a `GitHub` object. 
+Create a `GitHub` object.
 
 ```swift
 let gitHub = GitHub()
@@ -69,7 +69,7 @@ let repositories = try await self.gitHub.getRepositories(org: "swift-kipple")
 
 Discussions, issues, and pull requests are more than welcome! I'm happy to extend the functionality of this library, with respect to the features listed in the [Out of Scope](#out-of-scope) section.
 
-If opening a pull request, please ensure that the package retains 100% code coverage.
+If opening a pull request, please ensure that the package retains _as close to_ 100% code coverage as possible.
 
 ## Credits
 
