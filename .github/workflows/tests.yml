@@ -8,7 +8,9 @@ on:
 jobs:
   swift_test:
     uses: bdrelling/ci/.github/workflows/swift_test.yml@main
-    secrets: inherit
+    secrets:
+      DISCORD_CI_WEBHOOK: ${{ secrets.DISCORD_CI_WEBHOOK }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     with:
       scheme: GoatHerb
       # GitHub's API is rate limited and this SDK doesn't use authentication.

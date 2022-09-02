@@ -93,13 +93,6 @@ extension RepositoryValidating {
         // All organization repositories should have permissions.
         if shouldHavePermissions, repository.owner.type == .organization {
             let permissions = try XCTUnwrap(repository.permissions, repository.fullName)
-
-            // All repositories are public, so these permissions are always consistent.
-            XCTAssertEqual(permissions.admin, false, repository.fullName)
-            XCTAssertEqual(permissions.maintain, false, repository.fullName)
-            XCTAssertEqual(permissions.push, false, repository.fullName)
-            XCTAssertEqual(permissions.triage, false, repository.fullName)
-            XCTAssertEqual(permissions.pull, true, repository.fullName)
         }
 
         // Validate the owner of the repository.

@@ -9,6 +9,8 @@ public struct RateLimit: Codable {
         public let remaining: Int
         public let reset: Int
         public let used: Int
-        public let resource: String
+        
+        // The "resource" property here has been intentionally disabled because it only appears in unauthenticated requests.
+        // public let resource: String
     }
 }

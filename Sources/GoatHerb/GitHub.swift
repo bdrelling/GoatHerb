@@ -16,14 +16,19 @@ public final class GitHub {
     // MARK: Properties
 
     public let client: HTTPClient
+    public let hasAccessToken: Bool
 
     // MARK: Initializers
 
-    public init(personalAccessToken: String? = nil, dispatcher: NetworkRequestDispatching = .universal, logger: Logger? = nil) {
-        // If the personal access token was passed in explicitly, use that. Otherwise, check the environment for the applicable key.
-        let personalAccessToken = personalAccessToken ?? ProcessInfo.processInfo.environment["GITHUB_ACCESS_TOKEN"]
+    public init(accessToken: String? = nil, dispatcher: NetworkRequestDispatching = .universal, logger: Logger? = nil, shouldUseEnvironment: Bool = true) {
+        // If the access token was passed in explicitly, use that.
+        // Otherwise, unless environment detection was disabled, check the environment for the applicable key.
+        let accessToken = accessToken ?? (shouldUseEnvironment ? ProcessInfo.processInfo.environment["GITHUB_ACCESS_TOKEN"] : nil)
+        
+        // Whether or not the GitHub client is using an access token when making requests.
+        self.hasAccessToken = accessToken?.isEmpty == false
 
-        self.client = .init(environment: Self.environment(personalAccessToken: personalAccessToken), dispatcher: dispatcher, logger: logger)
+        self.client = .init(environment: Self.environment(accessToken: accessToken), dispatcher: dispatcher, logger: logger)
     }
 
     // MARK: Requests
@@ -34,11 +39,11 @@ public final class GitHub {
 
     // MARK: Utilities
 
-    public static func environment(personalAccessToken: String? = nil) -> Environment {
+    public static func environment(accessToken: String? = nil) -> Environment {
         var headers: [HTTPHeader: String] = [:]
 
-        if let personalAccessToken = personalAccessToken {
-            headers[.authorization] = "Bearer \(personalAccessToken)"
+        if let accessToken = accessToken {
+            headers[.authorization] = "Bearer \(accessToken)"
         }
 
         return .init(

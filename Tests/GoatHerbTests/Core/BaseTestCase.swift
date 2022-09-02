@@ -7,5 +7,6 @@ import XCTest
 class BaseTestCase: XCTestCase {
     let dispatcher: NetworkRequestDispatching = .universal
 
-    private(set) lazy var gitHub = GitHub(dispatcher: self.dispatcher)
+    private(set) lazy var gitHub = GitHub(dispatcher: self.dispatcher, logger: .debug("GoatHerbTests"))
+    private(set) lazy var gitHubUnauthenticated = GitHub(dispatcher: self.dispatcher, logger: .debug("GoatHerbTests"), shouldUseEnvironment: false)
 }

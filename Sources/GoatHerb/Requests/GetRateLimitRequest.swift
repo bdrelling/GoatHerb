@@ -1,9 +1,5 @@
 // Copyright © 2022 Brian Drelling. All rights reserved.
 
-import Foundation
-
-// Copyright © 2022 Brian Drelling. All rights reserved.
-
 import KippleNetworking
 
 /// Gets the rate limit for the currently authenticated user.
@@ -12,7 +8,7 @@ import KippleNetworking
 public struct GetRateLimitRequest: Request, ResponseAnticipating {
     public typealias Response = RateLimit
 
-    public let path = "/rate-limit"
+    public let path = "/rate_limit"
 
     public init() {}
 }

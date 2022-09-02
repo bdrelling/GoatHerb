@@ -7,7 +7,7 @@
 [![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fbdrelling%2FGoatHerb%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/bdrelling/GoatHerb)
 [![License](https://img.shields.io/github/license/bdrelling/GoatHerb)](https://github.com/bdrelling/GoatHerb/blob/main/LICENSE)
 
-**GoatHerb** is a cross-platform Swift library for accessing **publicly available information** in the GitHub API.
+**GoatHerb** is a cross-platform Swift library for accessing the GitHub API.
 
 ## Features
 
@@ -30,18 +30,6 @@
 - [x] Get Repository
 
 > That's it for now! If you're looking for a more feature-complete SDK, check out [the list of GitHub SDKs on Swift Package Index](https://swiftpackageindex.com/search?query=GitHub).
-
-## Out of Scope
-
-GoatHerb wasn't designed to wrap the entire GitHub API. Instead, GoatHerb specializes in publicly available information that you can get _without_ API authentication.
-
-As such, the following features are out of scope:
-
-- Authentication
-- Private Repositories
-- GitHub Enterprise
-
-> Disappointed? No worries! There are [numerous Swift GitHub SDKs available](https://swiftpackageindex.com/search?query=GitHub) to take your pick from.
 
 ## Contributing
 
