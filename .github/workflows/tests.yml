@@ -6,6 +6,16 @@ on:
     branches: [main]
 
 jobs:
+  check_rate_limit:
+    name: Check Rate Limit
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-latest, macos-11, macos-12]
+    steps:
+      - name: Check Rate Limit
+        run: "curl -H 'UserAgent: GoatHerb' -L https://api.github.com/rate_limit"
   swift_test:
     uses: bdrelling/ci/.github/workflows/swift_test.yml@main
     secrets: inherit

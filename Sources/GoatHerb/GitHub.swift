@@ -40,7 +40,9 @@ public final class GitHub {
     // MARK: Utilities
 
     public static func environment(accessToken: String? = nil) -> Environment {
-        var headers: [HTTPHeader: String] = [:]
+        var headers: [HTTPHeader: String] = [
+            .userAgent: "GoatHerb",
+        ]
 
         if let accessToken = accessToken {
             headers[.authorization] = "Bearer \(accessToken)"
