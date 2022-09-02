@@ -6,6 +6,7 @@ on:
     branches: [main]
 
 env:
+  scheme: GoatHerb
   # The project is compatible with iOS, macOS, tvOS, watchOS, and Linux.
   # However, due to GitHub API rate limits, we only test macOS and Linux,
   # which are the intended platforms for this library.
@@ -53,7 +54,7 @@ jobs:
         # As of September 2022, we cannot reference local actions from a reusable workflow.
         uses: bdrelling/ci/.github/actions/swift-test@main
         with:
-          scheme: ${{ inputs.scheme }}
+          scheme: ${{ env.scheme }}
           platform: ${{ matrix.inputs.platform }}
           build-method: ${{ matrix.inputs.build-method }}
           subcommand: ${{ matrix.inputs.subcommand }}
