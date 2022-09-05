@@ -7,7 +7,7 @@ import Foundation
 /// For example requests, see:
 ///   - <https://api.github.com/users/bdrelling/repos>
 ///   - <https://api.github.com/orgs/swift-kipple/repos>
-public struct Repository {
+public struct Repository: Equatable {
     public let allowsForking: Bool
     public let apiURL: String
     public let archiveURL: String

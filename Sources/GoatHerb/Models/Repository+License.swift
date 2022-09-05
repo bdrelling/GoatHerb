@@ -1,7 +1,7 @@
 // Copyright © 2022 Brian Drelling. All rights reserved.
 
 public extension Repository {
-    struct License: Codable {
+    struct License: Codable, Equatable {
         public let key: String
         public let name: String
         public let nodeID: String

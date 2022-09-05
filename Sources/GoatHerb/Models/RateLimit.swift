@@ -1,10 +1,10 @@
 // Copyright © 2022 Brian Drelling. All rights reserved.
 
-public struct RateLimit: Codable {
+public struct RateLimit: Codable, Equatable {
     public let resources: [String: Resource]
     public let rate: Resource
 
-    public struct Resource: Codable {
+    public struct Resource: Codable, Equatable {
         public let limit: Int
         public let remaining: Int
         public let reset: Int

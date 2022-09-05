@@ -5,7 +5,7 @@ import Foundation
 /// Represents a GitHub user.
 ///
 /// For an example request, see <https://api.github.com/users/bdrelling>.
-public struct User {
+public struct User: Equatable {
     public let apiURL: String
     public let avatarURL: String
     public let bio: String?

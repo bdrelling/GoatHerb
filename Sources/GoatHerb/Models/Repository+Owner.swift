@@ -6,7 +6,7 @@ import Foundation
 ///
 /// For an example request, see <https://api.github.com/users/bdrelling>.
 public extension Repository {
-    struct Owner {
+    struct Owner: Equatable {
         public let apiURL: String
         public let avatarURL: String
         public let eventsURL: String

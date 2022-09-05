@@ -5,7 +5,7 @@ import Foundation
 /// Represents a GitHub organization..
 ///
 /// For an example request, see <https://api.github.com/orgs/swift-kipple>.
-public struct Organization {
+public struct Organization: Equatable {
     public let apiURL: String
     public let avatarURL: String
     public let company: String?
