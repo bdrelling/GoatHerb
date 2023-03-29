@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/swift-kipple/Diagnostics", .upToNextMinor(from: "0.2.0")),
-        .package(url: "https://github.com/swift-kipple/Networking", .upToNextMinor(from: "0.3.0")),
+        .package(url: "https://github.com/swift-kipple/Networking", .upToNextMinor(from: "0.4.0")),
     ],
     targets: [
         // Product Targets
